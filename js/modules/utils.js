@@ -1,4 +1,3 @@
-// Small shared helpers used across modules.
 export const qs = (sel, ctx = document) => ctx.querySelector(sel);
 export const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
@@ -39,4 +38,38 @@ export function typeInto(el, text, speed = 28){
 
 export function wait(ms){
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+// iOS-safe scroll lock: plain `overflow:hidden` on <body> is not reliable on
+// mobile Safari — it often blocks touch-scrolling inside child elements too
+// (e.g. a scrollable list inside a modal). Locking with `position: fixed`
+// while preserving the scroll offset avoids that, and restores the exact
+// scroll position on unlock.
+let __scrollLockY = 0;
+let __scrollLockCount = 0;
+
+export function lockBodyScroll(){
+  if(__scrollLockCount === 0){
+    __scrollLockY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${__scrollLockY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
+  }
+  __scrollLockCount++;
+}
+
+export function unlockBodyScroll(){
+  __scrollLockCount = Math.max(0, __scrollLockCount - 1);
+  if(__scrollLockCount === 0){
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+    window.scrollTo(0, __scrollLockY);
+  }
 }
