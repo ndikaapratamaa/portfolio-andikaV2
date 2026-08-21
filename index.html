@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Andika Pratama — Front-End Developer</title>
+<meta name="description" content="Portfolio Andika Pratama — Front-End Developer & Student dari Pacitan, Indonesia. Membangun pengalaman web modern, cepat, dan mudah diakses.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://ndikaapratamaa.github.io/portfolio-v3/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Andika Pratama — Front-End Developer">
+<meta property="og:description" content="Portfolio Andika Pratama — Front-End Developer & Student dari Pacitan, Indonesia.">
+<meta property="og:image" content="assets/images/foto-andikaV1.jpg">
+<meta property="og:url" content="https://ndikaapratamaa.github.io/portfolio-v3/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#020617">
+
+<link rel="icon" type="image/jpeg" href="assets/images/foto-andikaV1.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Google Identity Services script removed for now — feature isn't
+     configured yet (see js/modules/auth.js). Loading this script was
+     what made Chrome pop up its own native "Continue with Google"
+     side panel. Re-add it once GOOGLE_CLIENT_ID is set and
+     FEATURE_ENABLED is flipped to true in auth.js. -->
+</head>
+<body>
+
+<a href="#main" class="skip-link">Lewati ke konten utama</a>
+
+<!-- Loading screen -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-mark">
+    <p class="loader-line">$ <span class="type" id="loader-type"></span></p>
+    <div class="loader-track"><div class="loader-fill"></div></div>
+  </div>
+</div>
+
+<div id="scroll-progress"></div>
+<!-- Navbar -->
+<header class="navbar" id="navbar">
+  <div class="container">
+    <a href="#home" class="brand" aria-label="Andika — kembali ke beranda">
+      <span class="brand-tag" aria-hidden="true">&lt;</span>Andika<span class="brand-tag" aria-hidden="true">/&gt;</span>
+    </a>
+
+    <nav aria-label="Navigasi utama">
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#meet">Meet</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#workflow">Workflow</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#journey">Journey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="kbd-hint" id="cmdk-trigger" aria-haspopup="dialog">
+        Search <kbd>Ctrl</kbd><kbd>K</kbd>
+      </button>
+      <button class="icon-btn" id="theme-toggle" aria-label="Ganti tema" title="Ganti tema">
+        <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
+      </button>
+
+      <!-- "Continue with Google" — placeholder only, see js/modules/auth.js -->
+      <div class="auth-slot" id="auth-slot">
+        <button class="google-btn js-ripple" id="google-signin-btn" type="button" aria-label="Continue with Google">
+          <svg class="google-icon" viewBox="0 0 18 18" aria-hidden="true">
+            <path fill="#4285F4" d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84c-.21 1.13-.84 2.09-1.8 2.73v2.27h2.91c1.7-1.57 2.69-3.88 2.69-6.64z"/>
+            <path fill="#34A853" d="M9 18c2.43 0 4.47-.8 5.96-2.17l-2.91-2.27c-.81.54-1.85.86-3.05.86-2.34 0-4.33-1.58-5.04-3.71H.96v2.34C2.44 15.98 5.48 18 9 18z"/>
+            <path fill="#FBBC05" d="M3.96 10.71a5.4 5.4 0 0 1 0-3.42V4.95H.96a9 9 0 0 0 0 8.1l3-2.34z"/>
+            <path fill="#EA4335" d="M9 3.58c1.32 0 2.5.45 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0 5.48 0 2.44 2.02.96 4.95l3 2.34C4.67 5.16 6.66 3.58 9 3.58z"/>
+          </svg>
+          <span class="google-btn-label">Continue with Google</span>
+        </button>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section id="home" class="hero">
+    <div class="hero-blobs" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <h1 data-reveal="up">Hi, I'm <span class="accent">Andika</span></h1>
+        <p class="role-line" data-reveal="up">Front-End Developer &amp; Student from Indonesia</p>
+        <p class="lead" data-reveal="up">I love creating modern, responsive, and interactive web experiences — with an eye for detail and a love for clean code.</p>
+
+        <div class="hero-actions" data-reveal="up">
+          <a href="#projects" class="btn js-ripple">See what I've built ↗</a>
+          <a href="#about" class="hero-link-cta">About Andika <span class="hero-link-arrow">→</span></a>
+        </div>
+
+        <div class="hero-social" data-reveal="up">
+          <a href="https://www.instagram.com/ndikaaprtmaaa/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="Instagram Andika" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          </a>
+          <a href="https://github.com/ndikaapratamaa" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="GitHub Andika" title="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.6 9.6 0 0 1 12 6.8c.85 0 1.7.11 2.5.34 1.9-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" class="icon-btn" aria-label="LinkedIn Andika" title="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM3.5 8.75h6.86V21H3.5V8.75Zm7.98 0h6.57v1.68h.1c.92-1.66 3.16-1.68 3.16-1.68 3.38 0 4.36 2.22 4.36 5.11V21h-6.86v-6.09c0-1.45-.03-3.32-2.02-3.32-2.02 0-2.33 1.58-2.33 3.21V21h-6.98V8.75Z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Signature element: a live-typed terminal -->
+      <div class="hero-visual" data-reveal="right">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="term-dots"><span></span><span></span><span></span></div>
+            <span class="path">~/andika/profile.js</span>
+          </div>
+          <div class="terminal-body" id="terminal-body" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true"><span class="line"></span>Scroll to explore</div>
+  </section>
+
+  <!-- ============ MEET ANDIKA ============ -->
+  <section id="meet" class="section-pad">
+    <div class="container meet-grid">
+      <div class="meet-content" data-reveal="left">
+        <p class="eyebrow">Meet Andika</p>
+        <h2>A closer look, beyond the code.</h2>
+        <p class="meet-intro">Di luar baris kode, saya suka mengamati detail kecil yang bikin sesuatu terasa dipikirkan matang — mulai dari cara desain, urutan interaksi, sampai secangkir kopi yang menemani proses ngoding.</p>
+
+        <ul class="meet-highlights">
+          <li><span class="meet-highlight-icon" aria-hidden="true">📍</span> Pacitan, Jawa Timur</li>
+          <li><span class="meet-highlight-icon" aria-hidden="true">⚛️</span> Sedang mengeksplorasi cara membangun interface yang lebih baik</li>
+          <li><span class="meet-highlight-icon" aria-hidden="true">☕</span> Ngoding paling lancar ditemani kopi &amp; playlist instrumental</li>
+          <li><span class="meet-highlight-icon" aria-hidden="true">🌱</span> Percaya bahwa progres kecil yang konsisten akan membawa hasil</li>
+        </ul>
+      </div>
+
+      <div class="meet-photo" data-reveal="right" aria-label="Galeri foto Andika Pratama">
+        <div class="meet-frame">
+          <div class="meet-viewer">
+            <img src="assets/images/foto-andikaV1.jpg" alt="Andika Pratama — foto 1" class="meet-slide is-active" loading="lazy">
+            <img src="assets/images/foto-andikaV2.jpg" alt="Andika Pratama — foto 2" class="meet-slide" loading="lazy">
+          </div>
+        </div>
+
+        <div class="meet-dots" id="meet-dots" role="tablist" aria-label="Pilih foto">
+          <button type="button" class="meet-dot is-active" role="tab" aria-selected="true" aria-label="Foto 1" data-index="0"></button>
+          <button type="button" class="meet-dot" role="tab" aria-selected="false" aria-label="Foto 2" data-index="1"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT (bento grid) ============ -->
+  <section id="about" class="section-pad">
+    <div class="container">
+      <div class="section-head" data-reveal="up">
+        <p class="eyebrow">About Me</p>
+        <h2>Belajar, membangun, mengulangi.</h2>
+        <p>Bukan paragraf panjang — beberapa potongan singkat tentang siapa saya dan ke mana arah saya.</p>
+      </div>
+
+      <div class="bento">
+        <div class="bento-card span-2 row-2 lead-card" data-reveal="up">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+          <h3>Andika Pratama — pelajar &amp; front-end developer dari Pacitan, Indonesia.</h3>
+          <p>Saya suka mengubah ide menjadi antarmuka yang hidup: rapi, responsif, dan enak dipakai. Setiap proyek adalah latihan untuk berpikir seperti pengguna, bukan cuma seperti programmer.</p>
+        </div>
+
+        <div class="bento-card span-2" data-reveal="up" style="transition-delay:.06s">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 8 4 12l5 4M15 8l5 4-5 4"/></svg></div>
+          <h3>What I Enjoy Building</h3>
+          <p>Antarmuka web dengan animasi halus dan detail interaksi kecil — hover, transisi, micro-copy — yang membuat sebuah produk terasa dipikirkan matang.</p>
+        </div>
+
+        <div class="bento-card" data-reveal="up" style="transition-delay:.12s">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+          <h3>Current Focus</h3>
+          <p>Memperdalam JavaScript modern dan bersiap masuk ke React di semester berikutnya.</p>
+        </div>
+
+        <div class="bento-card" data-reveal="up" style="transition-delay:.18s">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 3 18 9-18 9 4-9-4-9Z"/></svg></div>
+          <h3>Career Goals</h3>
+          <p>Menjadi front-end developer yang bisa diandalkan di proyek nyata, sambil terus mengasah rasa desain.</p>
+        </div>
+
+        <div class="bento-card span-2" data-reveal="up" style="transition-delay:.24s">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v5h5"/></svg></div>
+          <h3>Learning Mindset</h3>
+          <p>Saya percaya progres kecil yang konsisten mengalahkan usaha besar yang sesekali. Tiap bug yang berhasil diperbaiki adalah pelajaran, bukan kegagalan.</p>
+        </div>
+
+        <div class="bento-card span-4" data-reveal="up" style="transition-delay:.3s">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 17.3 6.2 20l1.1-6.4L2.6 9l6.5-1L12 2l2.9 6 6.5 1-4.7 4.6 1.1 6.4Z"/></svg></div>
+          <h3>Fun Facts</h3>
+          <ul class="fun-fact-list">
+            <li>Bisa lupa waktu kalau sudah utak-atik CSS animation.</li>
+            <li>Ngoding paling lancar ditemani kopi dan playlist instrumental.</li>
+            <li>Portfolio ini sudah masuk revisi ketiga — dan masih akan terus diperbaiki.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WORKFLOW ============ -->
+  <section id="workflow" class="section-pad" style="background:var(--surface)">
+    <div class="container">
+      <div class="section-head" data-reveal="up">
+        <p class="eyebrow">Workflow</p>
+        <h2>From idea to interface.</h2>
+        <p>Bagaimana saya mengubah ide menjadi website yang rapi, interaktif, dan siap digunakan.</p>
+      </div>
+
+      <div class="workflow-list">
+        <div class="workflow-step" data-reveal="up">
+          <span class="workflow-num">01</span>
+          <div class="workflow-body">
+            <h3>Plan</h3>
+            <p>Memahami kebutuhan dan merencanakan struktur serta fitur.</p>
+          </div>
+        </div>
+        <div class="workflow-step" data-reveal="up" style="transition-delay:.08s">
+          <span class="workflow-num">02</span>
+          <div class="workflow-body">
+            <h3>Build</h3>
+            <p>Mengubah struktur yang direncanakan menjadi interface yang fungsional dan interaktif.</p>
+          </div>
+        </div>
+        <div class="workflow-step" data-reveal="up" style="transition-delay:.16s">
+          <span class="workflow-num">03</span>
+          <div class="workflow-body">
+            <h3>Refine</h3>
+            <p>Merapikan responsive layout, interaction, animation, dan UI.</p>
+          </div>
+        </div>
+        <div class="workflow-step" data-reveal="up" style="transition-delay:.24s">
+          <span class="workflow-num">04</span>
+          <div class="workflow-body">
+            <h3>Ship</h3>
+            <p>Testing, memperbaiki bug, dan memastikan website siap digunakan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section-pad">
+    <div class="container">
+      <div class="section-head" data-reveal="up">
+        <p class="eyebrow">Featured Projects</p>
+        <h2>Beberapa hal yang sudah saya bangun.</h2>
+        <p>Klik "Case Study" untuk melihat masalah, solusi, dan apa yang saya pelajari dari tiap proyek.</p>
+      </div>
+
+      <div class="filter-bar" data-reveal="up" role="group" aria-label="Filter proyek">
+        <button class="filter-btn active" data-filter="all">All</button>
+      </div>
+
+      <div class="project-grid" id="project-grid"><!-- Rendered by js/modules/projects.js from PROJECTS data --></div>
+    </div>
+  </section>
+
+  <!-- Case study modal (populated dynamically) -->
+  <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal">
+      <button class="modal-close" id="modal-close" aria-label="Tutup">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <h3 id="modal-title"></h3>
+
+      <div class="modal-section"><h4>Problem</h4><p id="modal-problem"></p></div>
+      <div class="modal-section"><h4>Solution</h4><p id="modal-solution"></p></div>
+      <div class="modal-section"><h4>Features</h4><ul id="modal-features"></ul></div>
+      <div class="modal-section"><h4>Challenges</h4><p id="modal-challenges"></p></div>
+      <div class="modal-section"><h4>What I Learned</h4><p id="modal-learned"></p></div>
+
+      <div class="modal-actions">
+        <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub</a>
+        <a id="modal-live" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Live Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ JOURNEY / EXPERIENCE ============ -->
+  <section id="journey" class="section-pad" style="background:var(--surface)">
+    <div class="container">
+      <div class="section-head" data-reveal="up">
+        <p class="eyebrow">Journey</p>
+        <h2>Perjalanan belajar saya sejauh ini.</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item" data-reveal="left">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2024</span>
+          <h3>Started learning programming</h3>
+          <p>Mengenal dasar-dasar HTML dan bagaimana halaman web disusun.</p>
+        </div>
+        <div class="timeline-item" data-reveal="left" style="transition-delay:.06s">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2024</span>
+          <h3>Built first website</h3>
+          <p>Mempelajari CSS untuk mendesain tampilan dan membuat layout pertama.</p>
+        </div>
+        <div class="timeline-item" data-reveal="left" style="transition-delay:.12s">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2025</span>
+          <h3>From Learning to Building</h3>
+          <p>Belajar JavaScript untuk menambahkan interaktivitas, sekaligus membawa proyek jadi lebih hidup — dari sekadar struktur ke pengalaman yang terasa nyata.</p>
+        </div>
+        <div class="timeline-item" data-reveal="left" style="transition-delay:.18s">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">2026</span>
+          <h3>Building Multiple Projects</h3>
+          <p>Mengerjakan beberapa proyek nyata sekaligus, dari eksperimen kecil sampai proyek yang lebih serius.</p>
+        </div>
+        <div class="timeline-item is-future" data-reveal="left" style="transition-delay:.24s">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">Sedang berjalan</span>
+          <h3>Currently learning React &amp; Next.js</h3>
+          <p>Mulai menjajaki component-based development dengan React, dan mengarah ke Next.js untuk proyek berikutnya.</p>
+        </div>
+        <div class="timeline-item is-future" data-reveal="left" style="transition-delay:.3s">
+          <div class="timeline-dot"></div>
+          <span class="timeline-year">Future Goals</span>
+          <h3>Full-stack &amp; production-ready projects</h3>
+          <p>Menguasai backend dasar dan mulai berkontribusi ke proyek nyata.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATISTICS ============ -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-card" data-reveal="up">
+          <div class="stat-number">???</div>
+          <p class="stat-label">Projects Completed</p>
+        </div>
+        <div class="stat-card" data-reveal="up" style="transition-delay:.08s">
+          <div class="stat-number" data-count="2" data-suffix="+">0</div>
+          <p class="stat-label">Years Learning</p>
+        </div>
+        <div class="stat-card" data-reveal="up" style="transition-delay:.16s">
+          <div class="stat-number">???</div>
+          <p class="stat-label">Public Repositories</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section-pad">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-lead" data-reveal="left">
+          <p class="eyebrow">Contact</p>
+          <h2>Let's build something.</h2>
+          <p>Punya ide, project, atau ingin berdiskusi tentang web development?<br>Kirim pesan dan saya akan membacanya.</p>
+
+          <div class="contact-support">
+            <h3>Have a project in mind?</h3>
+            <p>Ceritakan sedikit tentang apa yang ingin kamu bangun. Kita lihat bagaimana mengembangkannya.</p>
+            <ul class="contact-tags">
+              <li>Web Development</li>
+              <li>UI &amp; Front-End</li>
+              <li>Project Collaboration</li>
+            </ul>
+          </div>
+        </div>
+
+        <form class="contact-form" id="contact-form" data-reveal="right" novalidate>
+          <div class="form-field">
+            <input type="text" id="name" name="name" placeholder=" " required autocomplete="name">
+            <label for="name">Name</label>
+          </div>
+          <div class="form-field">
+            <input type="email" id="email" name="email" placeholder=" " required autocomplete="email">
+            <label for="email">Email</label>
+          </div>
+          <div class="form-field">
+            <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+            <label for="message">Message</label>
+          </div>
+          <button type="submit" class="btn js-ripple">
+            <span>Send Message</span>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER: closing experience ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-copyright">&copy; 2026 Andika — Keep building.</p>
+  </div>
+</footer>
+
+<button id="back-to-top" aria-label="Kembali ke atas">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 7-7 7 7M12 5v15"/></svg>
+</button>
+
+<!-- ============ COMMAND PALETTE (Ctrl/Cmd + K) ============ -->
+<div class="cmdk-overlay" id="cmdk-overlay" role="dialog" aria-modal="true" aria-label="Command palette">
+  <div class="cmdk">
+    <div class="cmdk-input-row">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" id="cmdk-input" placeholder="Cari halaman atau proyek..." aria-label="Cari">
+      <span class="cmdk-esc">Esc</span>
+    </div>
+    <div class="cmdk-list" id="cmdk-list"></div>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
