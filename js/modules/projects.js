@@ -1,8 +1,5 @@
-import { qs, qsa } from './utils.js';
+import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
 import { animateStatValue } from './counters.js';
-
-// Single source of truth for project content — reused by the grid,
-// the case-study modal, and the command palette's project search.
 export const PROJECTS = [
   {
     id: 'update-portfolio',
@@ -119,13 +116,13 @@ export function initProjectModal(){
     else { liveLink.style.display = 'none'; }
 
     overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     closeBtn.focus();
   };
 
   const close = () => {
     overlay.classList.remove('open');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
   };
 
   document.addEventListener('click', (e) => {
