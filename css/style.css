@@ -218,7 +218,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     opacity: 0;
     transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .25s var(--ease);
   }
-  .nav-links.open{ max-height: 360px; padding: 1.2rem 1.5rem; opacity: 1; }
+  .nav-links.open{
+    max-height: calc(100vh - var(--nav-h));
+    overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
+    padding: 1.2rem 1.5rem; opacity: 1;
+  }
   .nav-links li{
     padding: .8rem 0; border-bottom: 1px solid var(--border);
     opacity: 0; transform: translateY(-6px);
