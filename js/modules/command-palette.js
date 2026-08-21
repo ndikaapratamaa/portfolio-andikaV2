@@ -1,4 +1,4 @@
-import { qs, qsa } from './utils.js';
+import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
 import { PROJECTS } from './projects.js';
 
 const STATIC_ITEMS = [
@@ -65,7 +65,7 @@ export function initCommandPalette(){
 
   function open(){
     overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
+    lockBodyScroll();
     input.value = '';
     render();
     setTimeout(() => input.focus(), 50);
@@ -73,7 +73,7 @@ export function initCommandPalette(){
 
   function close(){
     overlay.classList.remove('open');
-    document.body.style.overflow = '';
+    unlockBodyScroll();
   }
 
   function activate(index){
