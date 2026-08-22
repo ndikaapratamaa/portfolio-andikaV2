@@ -24,9 +24,9 @@ export function initMobileMenu(){
     const isOpen = links.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', String(isOpen));
-    // Lock the page underneath so touch drags inside the dropdown are
-    // unambiguously handled as scroll on .nav-links, not the body — some
-    // mobile in-app browsers (IG/FB webview) otherwise swallow the gesture.
+    // Freeze the page behind the open dropdown so it can't be scrolled
+    // accidentally. Safe now that .nav-links.open no longer depends on
+    // its own internal scroll to reveal every item (see css/style.css).
     if(isOpen) lockBodyScroll();
     else unlockBodyScroll();
   });
