@@ -219,16 +219,15 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .25s var(--ease);
   }
   .nav-links.open{
-    /* Deliberately NOT viewport-unit based (vh/dvh). Some mobile in-app
-       browsers (IG/FB webview etc.) both misreport vh AND fail to relay
-       touch-drag into a nested `overflow-y:auto` region inside a
-       `position:fixed` element — so if the box ever ends up shorter than
-       its content, it's unrecoverable there (no way to scroll to reveal
-       the rest). Fix: use a fixed px cap that's always taller than the
-       7 nav items could realistically need, so the panel never has to
-       rely on scrolling to show everything.
-    */
-    max-height: 640px;
+    /* Sized off --real-vh (set in JS from window.innerHeight, see
+       initRealViewportHeight in utils.js) instead of vh/dvh or a guessed
+       fixed px — this is measured against the actual visible screen, so
+       the panel can never extend past what's on-screen. That matters
+       because it's `position:fixed`: anything past the visible edge is
+       unreachable — page scroll doesn't move fixed elements, and touch
+       drag inside `overflow-y:auto` here fails on several mobile in-app
+       browsers. Guaranteeing it fits removes the need to scroll it at all. */
+    max-height: calc(var(--real-vh, 1vh) * 100 - var(--nav-h));
     overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
     overscroll-behavior: contain;
     padding: 1.2rem 1.5rem; opacity: 1;
