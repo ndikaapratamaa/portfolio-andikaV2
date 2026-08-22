@@ -210,50 +210,66 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hamburger.open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
 
 @media (max-width: 900px){
-  .nav-links{
-    position: fixed; top: var(--nav-h); left: 0; right: 0; flex-direction: column; gap: 0;
+  /* --------------------------------------------------------------------
+     Mobile dropdown, rebuilt on the CSS grid "0fr → 1fr" auto-height
+     trick. Earlier versions tried to precompute the panel's max-height
+     from vh / dvh / measured window.innerHeight — all of that guesses at
+     the visible viewport, and if the guess is wrong on a given device the
+     panel clips with no way to reach the rest (position:fixed content
+     can't be revealed by page-scroll, and internal overflow-scroll is
+     unreliable on some mobile browsers). This version never guesses: the
+     wrapper is a 1-row grid whose row track animates between 0fr and 1fr,
+     which resolves to the CONTENT'S OWN natural height — always exactly
+     enough, on any device, with zero viewport math. -------------------- */
+  .nav-links-wrap{
+    position: fixed; top: var(--nav-h); left: 0; right: 0;
     background: color-mix(in srgb, var(--bg) 96%, transparent);
-    backdrop-filter: blur(16px); border-bottom: 1px solid var(--border);
-    max-height: 0; overflow: hidden; padding: 0 1.5rem;
+    backdrop-filter: blur(16px); border-bottom: 1px solid transparent;
+    display: grid; grid-template-rows: 0fr;
     opacity: 0;
-    transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .25s var(--ease);
-  }
-  .nav-links.open{
-    /* Sized off --real-vh (set in JS from window.innerHeight, see
-       initRealViewportHeight in utils.js) instead of vh/dvh or a guessed
-       fixed px — this is measured against the actual visible screen, so
-       the panel can never extend past what's on-screen. That matters
-       because it's `position:fixed`: anything past the visible edge is
-       unreachable — page scroll doesn't move fixed elements, and touch
-       drag inside `overflow-y:auto` here fails on several mobile in-app
-       browsers. Guaranteeing it fits removes the need to scroll it at all. */
-    max-height: calc(var(--real-vh, 1vh) * 100 - var(--nav-h));
+    transition: grid-template-rows .35s var(--ease), opacity .25s var(--ease), border-color .35s var(--ease);
+    /* Safety net only, not the primary sizing mechanism: if content is
+       ever taller than the screen (e.g. many more links added later),
+       this lets it scroll instead of running off-screen unreachable. */
+    max-height: 100vh; max-height: 100dvh;
     overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
     overscroll-behavior: contain;
-    padding: 1.2rem 1.5rem; opacity: 1;
   }
+  .nav-links-wrap.open{
+    grid-template-rows: 1fr;
+    opacity: 1;
+    border-bottom-color: var(--border);
+  }
+  .nav-links-wrap > .nav-links{
+    /* Required by the grid trick: a 0fr row has zero space, so this inner
+       element must clip to it, then reveal as the row grows to 1fr. */
+    overflow: hidden; min-height: 0;
+    flex-direction: column; gap: 0;
+    padding: 0 1.5rem;
+    transition: padding .35s var(--ease);
+  }
+  .nav-links-wrap.open > .nav-links{ padding: 1.2rem 1.5rem; }
   .nav-links li{
     padding: .8rem 0; border-bottom: 1px solid var(--border);
     opacity: 0; transform: translateY(-6px);
     transition: opacity .3s var(--ease), transform .3s var(--ease);
   }
-  .nav-links.open li{ opacity: 1; transform: translateY(0); }
-  .nav-links.open li:nth-child(1){ transition-delay: .04s; }
-  .nav-links.open li:nth-child(2){ transition-delay: .08s; }
-  .nav-links.open li:nth-child(3){ transition-delay: .12s; }
-  .nav-links.open li:nth-child(4){ transition-delay: .16s; }
-  .nav-links.open li:nth-child(5){ transition-delay: .2s; }
-  .nav-links.open li:nth-child(6){ transition-delay: .24s; }
-  .nav-links.open li:nth-child(7){ transition-delay: .28s; }
+  .nav-links-wrap.open .nav-links li{ opacity: 1; transform: translateY(0); }
+  .nav-links-wrap.open .nav-links li:nth-child(1){ transition-delay: .04s; }
+  .nav-links-wrap.open .nav-links li:nth-child(2){ transition-delay: .08s; }
+  .nav-links-wrap.open .nav-links li:nth-child(3){ transition-delay: .12s; }
+  .nav-links-wrap.open .nav-links li:nth-child(4){ transition-delay: .16s; }
+  .nav-links-wrap.open .nav-links li:nth-child(5){ transition-delay: .2s; }
+  .nav-links-wrap.open .nav-links li:nth-child(6){ transition-delay: .24s; }
+  .nav-links-wrap.open .nav-links li:nth-child(7){ transition-delay: .28s; }
   .nav-links li:last-child{ border-bottom: none; }
   .hamburger{ display: flex; }
 }
 
-/* Short/landscape screens: compact the items further so all 7 still fit
-   without needing to scroll the panel (see note above on why we avoid
-   relying on scroll for this menu). */
+/* Short/landscape screens: compact the items further, purely cosmetic —
+   the grid trick above already guarantees everything fits. */
 @media (max-width: 900px) and (max-height: 560px){
-  .nav-links.open{ padding: .6rem 1.5rem; }
+  .nav-links-wrap.open > .nav-links{ padding: .6rem 1.5rem; }
   .nav-links li{ padding: .45rem 0; }
 }
 
