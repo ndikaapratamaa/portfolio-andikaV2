@@ -219,12 +219,16 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .25s var(--ease);
   }
   .nav-links.open{
-    /* vh on mobile browsers (esp. in-app webviews like IG/FB) is often
-       miscalculated against the real visible viewport, cutting off content
-       before it can overflow into scroll. dvh reflects the actual visible
-       area, so items never get clipped in the first place. */
-    max-height: calc(100vh - var(--nav-h));
-    max-height: calc(100dvh - var(--nav-h));
+    /* Deliberately NOT viewport-unit based (vh/dvh). Some mobile in-app
+       browsers (IG/FB webview etc.) both misreport vh AND fail to relay
+       touch-drag into a nested `overflow-y:auto` region inside a
+       `position:fixed` element — so if the box ever ends up shorter than
+       its content, it's unrecoverable there (no way to scroll to reveal
+       the rest). Fix: use a fixed px cap that's always taller than the
+       7 nav items could realistically need, so the panel never has to
+       rely on scrolling to show everything.
+    */
+    max-height: 640px;
     overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
     overscroll-behavior: contain;
     padding: 1.2rem 1.5rem; opacity: 1;
@@ -244,6 +248,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .nav-links.open li:nth-child(7){ transition-delay: .28s; }
   .nav-links li:last-child{ border-bottom: none; }
   .hamburger{ display: flex; }
+}
+
+/* Short/landscape screens: compact the items further so all 7 still fit
+   without needing to scroll the panel (see note above on why we avoid
+   relying on scroll for this menu). */
+@media (max-width: 900px) and (max-height: 560px){
+  .nav-links.open{ padding: .6rem 1.5rem; }
+  .nav-links li{ padding: .45rem 0; }
 }
 
 /* ---------- Hero ---------- */
