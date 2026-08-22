@@ -1,4 +1,4 @@
-import { qs, qsa } from './utils.js';
+import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
 
 export function initNavbar(){
   const nav = qs('#navbar');
@@ -17,12 +17,18 @@ export function initMobileMenu(){
     btn.classList.remove('open');
     links.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
+    unlockBodyScroll();
   };
 
   btn.addEventListener('click', () => {
     const isOpen = links.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', String(isOpen));
+    // Lock the page underneath so touch drags inside the dropdown are
+    // unambiguously handled as scroll on .nav-links, not the body — some
+    // mobile in-app browsers (IG/FB webview) otherwise swallow the gesture.
+    if(isOpen) lockBodyScroll();
+    else unlockBodyScroll();
   });
 
   qsa('a', links).forEach((a) => a.addEventListener('click', close));
