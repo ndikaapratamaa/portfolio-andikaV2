@@ -10,23 +10,21 @@ export function initNavbar(){
 
 export function initMobileMenu(){
   const btn = qs('#hamburger');
+  const wrap = qs('#nav-links-wrap');
   const links = qs('#nav-links');
-  if(!btn || !links) return;
+  if(!btn || !wrap || !links) return;
 
   const close = () => {
     btn.classList.remove('open');
-    links.classList.remove('open');
+    wrap.classList.remove('open');
     btn.setAttribute('aria-expanded', 'false');
     unlockBodyScroll();
   };
 
   btn.addEventListener('click', () => {
-    const isOpen = links.classList.toggle('open');
+    const isOpen = wrap.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     btn.setAttribute('aria-expanded', String(isOpen));
-    // Freeze the page behind the open dropdown so it can't be scrolled
-    // accidentally. Safe now that .nav-links.open no longer depends on
-    // its own internal scroll to reveal every item (see css/style.css).
     if(isOpen) lockBodyScroll();
     else unlockBodyScroll();
   });
