@@ -219,8 +219,14 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
     transition: max-height .35s var(--ease), padding .35s var(--ease), opacity .25s var(--ease);
   }
   .nav-links.open{
+    /* vh on mobile browsers (esp. in-app webviews like IG/FB) is often
+       miscalculated against the real visible viewport, cutting off content
+       before it can overflow into scroll. dvh reflects the actual visible
+       area, so items never get clipped in the first place. */
     max-height: calc(100vh - var(--nav-h));
+    max-height: calc(100dvh - var(--nav-h));
     overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;
+    overscroll-behavior: contain;
     padding: 1.2rem 1.5rem; opacity: 1;
   }
   .nav-links li{
