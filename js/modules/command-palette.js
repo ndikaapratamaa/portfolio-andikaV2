@@ -29,7 +29,7 @@ function projectItems(){
 
 export function initCommandPalette(){
   const overlay = qs('#cmdk-overlay');
-  const trigger = qs('#cmdk-trigger');
+  const triggers = qsa('#cmdk-trigger, #hamburger');
   const input = qs('#cmdk-input');
   const list = qs('#cmdk-list');
   if(!overlay || !input || !list) return;
@@ -83,7 +83,7 @@ export function initCommandPalette(){
     item.action();
   }
 
-  trigger?.addEventListener('click', open);
+  triggers.forEach((t) => t.addEventListener('click', open));
 
   document.addEventListener('keydown', (e) => {
     const isK = e.key.toLowerCase() === 'k';
