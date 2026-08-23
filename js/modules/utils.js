@@ -1,4 +1,3 @@
-// Small shared helpers used across modules.
 export const qs = (sel, ctx = document) => ctx.querySelector(sel);
 export const qsa = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
@@ -15,8 +14,6 @@ export function debounce(fn, wait = 150){
   };
 }
 
-// Types a string into a target element one character at a time.
-// Returns a Promise that resolves once typing finishes.
 export function typeInto(el, text, speed = 28){
   return new Promise((resolve) => {
     if(prefersReducedMotion()){
@@ -40,6 +37,7 @@ export function typeInto(el, text, speed = 28){
 export function wait(ms){
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
+
 export function initRealViewportHeight(){
   const setVh = () => {
     document.documentElement.style.setProperty('--real-vh', `${window.innerHeight * 0.01}px`);
@@ -48,6 +46,8 @@ export function initRealViewportHeight(){
   window.addEventListener('resize', setVh);
   window.addEventListener('orientationchange', setVh);
 }
+
+
 let __scrollLockY = 0;
 let __scrollLockCount = 0;
 
