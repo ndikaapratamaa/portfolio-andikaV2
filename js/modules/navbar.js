@@ -1,4 +1,4 @@
-import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
+import { qs, qsa } from './utils.js';
 
 export function initNavbar(){
   const nav = qs('#navbar');
@@ -9,27 +9,6 @@ export function initNavbar(){
 }
 
 export function initMobileMenu(){
-  const btn = qs('#hamburger');
-  const wrap = qs('#nav-links-wrap');
-  const links = qs('#nav-links');
-  if(!btn || !wrap || !links) return;
-
-  const close = () => {
-    btn.classList.remove('open');
-    wrap.classList.remove('open');
-    btn.setAttribute('aria-expanded', 'false');
-    unlockBodyScroll();
-  };
-
-  btn.addEventListener('click', () => {
-    const isOpen = wrap.classList.toggle('open');
-    btn.classList.toggle('open', isOpen);
-    btn.setAttribute('aria-expanded', String(isOpen));
-    if(isOpen) lockBodyScroll();
-    else unlockBodyScroll();
-  });
-
-  qsa('a', links).forEach((a) => a.addEventListener('click', close));
 }
 
 export function initActiveNavLink(){
