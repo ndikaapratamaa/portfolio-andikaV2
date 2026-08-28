@@ -24,6 +24,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
+
+<!-- Google Identity Services script removed for now — feature isn't
+     configured yet (see js/modules/auth.js). Loading this script was
+     what made Chrome pop up its own native "Continue with Google"
+     side panel. Re-add it once GOOGLE_CLIENT_ID is set and
+     FEATURE_ENABLED is flipped to true in auth.js. -->
 </head>
 <body>
 
@@ -41,10 +47,6 @@
 <!-- Navbar -->
 <header class="navbar" id="navbar">
   <div class="container">
-    <a href="#home" class="brand" aria-label="Andika — kembali ke beranda">
-      <span class="brand-tag" aria-hidden="true">&lt;</span>Andika<span class="brand-tag" aria-hidden="true">/&gt;</span>
-    </a>
-
     <nav aria-label="Navigasi utama">
       <div class="nav-links-wrap" id="nav-links-wrap">
         <ul class="nav-links" id="nav-links">
@@ -168,7 +170,7 @@
     </div>
   </section>
 
-  <!-- ============ ABOUT  ============ -->
+  <!-- ============ ABOUT (bento grid) ============ -->
   <section id="about" class="section-pad">
     <div class="container">
       <div class="section-head" data-reveal="up">
