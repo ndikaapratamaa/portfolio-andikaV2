@@ -160,13 +160,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   border-bottom-color: var(--border); height: 66px;
 }
 .navbar .container{ display: flex; align-items: center; justify-content: space-between; }
-.brand{
-  display: inline-flex; align-items: baseline; gap: 1px;
-  font-family: var(--font-mono); font-size: 1.05rem; font-weight: 600;
-  letter-spacing: -0.02em; color: var(--text);
-}
-.brand-tag{ color: var(--muted); font-weight: 500; transition: color .35s var(--ease); }
-.brand:hover .brand-tag{ color: var(--primary); }
 .nav-links{ display: flex; gap: 2.1rem; }
 .nav-links a{
   font-size: .92rem; font-weight: 500; color: var(--muted);
