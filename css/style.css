@@ -106,7 +106,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .btn.btn-ghost{ background: var(--card); color: var(--text); border-color: var(--border); }
 .btn.btn-ghost:hover{ border-color: var(--primary); }
 .btn.btn-sm{ padding: .6rem 1.1rem; font-size: .85rem; }
-.btn .ripple{
+.js-ripple .ripple{
   position: absolute; border-radius: 50%; transform: scale(0);
   background: rgba(255,255,255,0.45); pointer-events: none; animation: ripple .6s ease-out forwards;
 }
