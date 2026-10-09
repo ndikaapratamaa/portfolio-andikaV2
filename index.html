@@ -8,7 +8,7 @@
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://ndikaapratamaa.github.io/portfolio-v3/">
 
-<!-- Open Graph -->
+
 <meta property="og:type" content="website">
 <meta property="og:title" content="Andika Pratama — Front-End Developer">
 <meta property="og:description" content="Portfolio Andika Pratama — Front-End Developer & Student dari Pacitan, Indonesia.">
@@ -24,18 +24,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="css/style.css">
-
-<!-- Google Identity Services script removed for now — feature isn't
-     configured yet (see js/modules/auth.js). Loading this script was
-     what made Chrome pop up its own native "Continue with Google"
-     side panel. Re-add it once GOOGLE_CLIENT_ID is set and
-     FEATURE_ENABLED is flipped to true in auth.js. -->
 </head>
 <body>
 
 <a href="#main" class="skip-link">Lewati ke konten utama</a>
 
-<!-- Loading screen -->
+
 <div id="loader" aria-hidden="true">
   <div class="loader-mark">
     <p class="loader-line">$ <span class="type" id="loader-type"></span></p>
@@ -44,7 +38,7 @@
 </div>
 
 <div id="scroll-progress"></div>
-<!-- Navbar -->
+
 <header class="navbar" id="navbar">
   <div class="container">
     <nav aria-label="Navigasi utama">
@@ -69,7 +63,7 @@
         <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
       </button>
 
-      <!-- "Continue with Google" — placeholder only, see js/modules/auth.js -->
+     
       <div class="auth-slot" id="auth-slot">
         <button class="google-btn js-ripple" id="google-signin-btn" type="button" aria-label="Continue with Google">
           <svg class="google-icon" viewBox="0 0 18 18" aria-hidden="true">
@@ -91,7 +85,7 @@
 
 <main id="main">
 
-  <!-- ============ HERO ============ -->
+ 
   <section id="home" class="hero">
     <div class="hero-blobs" aria-hidden="true">
       <div class="blob blob-1"></div>
@@ -123,7 +117,7 @@
         </div>
       </div>
 
-      <!-- Signature element: a live-typed terminal -->
+     
       <div class="hero-visual" data-reveal="right">
         <div class="terminal">
           <div class="terminal-bar">
@@ -138,7 +132,7 @@
     <div class="scroll-cue" aria-hidden="true"><span class="line"></span>Scroll to explore</div>
   </section>
 
-  <!-- ============ MEET ANDIKA ============ -->
+ 
   <section id="meet" class="section-pad">
     <div class="container meet-grid">
       <div class="meet-content" data-reveal="left">
@@ -164,7 +158,7 @@
     </div>
   </section>
 
-  <!-- ============ ABOUT (bento grid) ============ -->
+ 
   <section id="about" class="section-pad">
     <div class="container">
       <div class="section-head" data-reveal="up">
@@ -217,7 +211,7 @@
     </div>
   </section>
 
-  <!-- ============ WORKFLOW ============ -->
+ 
   <section id="workflow" class="section-pad" style="background:var(--surface)">
     <div class="container">
       <div class="section-head" data-reveal="up">
@@ -259,13 +253,13 @@
     </div>
   </section>
 
-  <!-- ============ PROJECTS ============ -->
+  
   <section id="projects" class="section-pad">
     <div class="container">
       <div class="section-head" data-reveal="up">
         <p class="eyebrow">Featured Projects</p>
         <h2>Beberapa hal yang sudah saya bangun.</h2>
-        <p>Klik "Case Study" untuk melihat masalah, solusi, dan apa yang saya pelajari dari tiap proyek.</p>
+        <p>Klik "Detail" untuk melihat masalah, solusi, dan apa yang saya pelajari dari tiap proyek.</p>
       </div>
 
       <div class="filter-bar" data-reveal="up" role="group" aria-label="Filter proyek">
@@ -276,7 +270,7 @@
     </div>
   </section>
 
-  <!-- Case study modal (populated dynamically) -->
+ 
   <div class="modal-overlay" id="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal">
       <button class="modal-close" id="modal-close" aria-label="Tutup">
@@ -284,20 +278,20 @@
       </button>
       <h3 id="modal-title"></h3>
 
-      <div class="modal-section"><h4>Problem</h4><p id="modal-problem"></p></div>
-      <div class="modal-section"><h4>Solution</h4><p id="modal-solution"></p></div>
-      <div class="modal-section"><h4>Features</h4><ul id="modal-features"></ul></div>
-      <div class="modal-section"><h4>Challenges</h4><p id="modal-challenges"></p></div>
-      <div class="modal-section"><h4>What I Learned</h4><p id="modal-learned"></p></div>
+      <div class="modal-section"><h4>Latar belakang</h4><p id="modal-problem"></p></div>
+      <div class="modal-section"><h4>Solusi</h4><p id="modal-solution"></p></div>
+      <div class="modal-section"><h4>Fitur</h4><ul id="modal-features"></ul></div>
+      <div class="modal-section"><h4>Tantangan</h4><p id="modal-challenges"></p></div>
+      <div class="modal-section"><h4>Yang saya pelajari</h4><p id="modal-learned"></p></div>
 
       <div class="modal-actions">
         <a id="modal-github" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub</a>
-        <a id="modal-live" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Live Demo</a>
+        <a id="modal-live" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Kunjungi</a>
       </div>
     </div>
   </div>
 
-  <!-- ============ JOURNEY / EXPERIENCE ============ -->
+  
   <section id="journey" class="section-pad" style="background:var(--surface)">
     <div class="container">
       <div class="section-head" data-reveal="up">
@@ -346,7 +340,7 @@
     </div>
   </section>
 
-  <!-- ============ STATISTICS ============ -->
+ 
   <section class="section-pad">
     <div class="container">
       <div class="stats-grid">
@@ -366,7 +360,7 @@
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
+  
   <section id="contact" class="section-pad">
     <div class="container">
       <div class="contact-grid">
@@ -411,7 +405,7 @@
 
 </main>
 
-<!-- ============ FOOTER: closing experience ============ -->
+
 <footer class="site-footer">
   <div class="container">
     <p class="footer-copyright">&copy; 2026 Andika — Keep building.</p>
@@ -422,7 +416,7 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 7-7 7 7M12 5v15"/></svg>
 </button>
 
-<!-- ============ COMMAND PALETTE (Ctrl/Cmd + K) ============ -->
+
 <div class="cmdk-overlay" id="cmdk-overlay" role="dialog" aria-modal="true" aria-label="Command palette">
   <div class="cmdk">
     <div class="cmdk-input-row">
