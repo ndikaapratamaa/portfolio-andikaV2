@@ -5,7 +5,6 @@ import { initThemeToggle } from './modules/theme.js';
 import { initScrollProgress, initScrollReveal } from './modules/reveal.js';
 import { initStatCounters } from './modules/counters.js';
 import { initHeroTerminal } from './modules/terminal.js';
-import { initMeetGallery } from './modules/meet-gallery.js';
 import { renderProjects, initProjectFilter, initProjectModal } from './modules/projects.js';
 import { initGitHub } from './modules/github.js';
 import { initCommandPalette } from './modules/command-palette.js';
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollReveal();
   initStatCounters();
   initHeroTerminal();
-  initMeetGallery();
 
   renderProjects();
   initProjectFilter();
