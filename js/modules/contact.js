@@ -21,7 +21,9 @@ export function initContactForm(){
   const status = qs('#form-status');
   if(!form) return;
 
-  form.addEventListener('submit', (e) => {
+  const submitBtn = form.querySelector('button[type="submit"]');
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const name = form.name.value.trim();
     const email = form.email.value.trim();
@@ -34,11 +36,35 @@ export function initContactForm(){
       return;
     }
 
-    // No backend connected yet — this simulates a successful send.
-    // Replace this block with a real fetch() call to your email service.
-    status.textContent = `Terima kasih, ${name}! Pesanmu sudah tercatat (demo — belum terkirim ke server).`;
-    status.className = 'form-status ok';
-    form.reset();
+    const formData = new FormData(form);
+    formData.append('access_key', 'dc4997a3-02b4-44ac-ad4a-f3fb372487c5');
+    formData.append('subject', 'Pesan Baru dari Portfolio V2');
+    formData.append('from_name', 'Portfolio V2');
+
+    submitBtn.disabled = true;
+    status.textContent = 'Mengirim...';
+    status.className = 'form-status';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+      const data = await res.json();
+
+      if(data.success){
+        status.textContent = `Terima kasih, ${name}! Pesanmu sudah terkirim.`;
+        status.className = 'form-status ok';
+        form.reset();
+      } else {
+        status.textContent = 'Maaf, pesan gagal terkirim. Coba lagi nanti ya.';
+        status.className = 'form-status err';
+      }
+    } catch (err) {
+      status.textContent = 'Terjadi kesalahan jaringan. Coba lagi nanti ya.';
+      status.className = 'form-status err';
+    } finally {
+      submitBtn.disabled = false;
+    }
   });
 }
-
