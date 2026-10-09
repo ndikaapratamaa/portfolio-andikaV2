@@ -1,30 +1,32 @@
 import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
 import { animateStatValue } from './counters.js';
+
+// Single source of truth for project content — reused by the grid,
+// the case-study modal, and the command palette's project search.
 export const PROJECTS = [
   {
-    id: 'update-portfolio',
-    title: 'Update Portfolio',
-    tags: ['html', 'css', 'javascript', 'uiux'],
+    id: 'portfolio-v1',
+    title: 'Portfolio V1',
+    tags: ['html', 'css', 'javascript'],
     tagLabels: ['HTML5', 'CSS3', 'JavaScript'],
-    summary: 'Portfolio pribadi yang terus diiterasi dari V1 ke V3 — sekarang dengan hero personal, bento grid, dan command palette, dibangun murni dengan vanilla JS.',
+    summary: 'Versi pertama portofolio pribadi saya — tema gelap dengan aksen biru, berisi profil, skills, projects, dan form kontak yang langsung masuk ke email.',
     thumbIcon: 'code',
+    thumbnail: 'assets/images/thumb-portfolio-v1.jpg',
     status: null,
     github: null,
-    live: 'index.html',
-    liveLabel: 'Kembali ke Web',
+    live: 'https://portfolio-mu-taupe-jw24mfk57j.vercel.app/',
+    liveLabel: 'Kunjungi',
     caseStudy: {
-      problem: 'Portfolio pertama dibuat sebagai langkah awal untuk memperkenalkan diri, skills, dan project yang sudah dikerjakan, tapi strukturnya masih sederhana dan belum punya identitas personal yang kuat. Versi kedua memperbaiki visual dan struktur informasi, namun masih terasa generik — layout template, tanpa elemen visual yang benar-benar mencerminkan identitas sebagai developer.',
-      solution: 'Portfolio ini terus di-update lewat tiga iterasi: V1 membangun struktur lengkap (profil, skills, projects, contact) dengan interaksi dasar. V2 memperbaiki visual, typography, dan UX supaya lebih terorganisir dan konsisten. V3 merancang ulang dari nol dengan satu ide visual yang konsisten — bahasa "IDE" (title bar, monospace, badge status) yang menyatukan hero, alur kerja, dan proyek, dipadukan dengan potret personal agar tetap terasa manusiawi.',
+      problem: 'Saya butuh tempat untuk memperkenalkan diri, menampilkan skills, dan mengumpulkan project yang sudah dikerjakan dalam satu website, sebagai langkah awal membangun identitas sebagai developer.',
+      solution: 'Membangun website portofolio lengkap dengan HTML, CSS, dan JavaScript murni: bagian profil, skills, projects, dan kontak, dengan tema gelap beraksen biru dan interaksi dasar.',
       features: [
-        'Hero personal dengan potret dan glow lembut sebagai anchor visual',
-        'Bento grid untuk seksi About',
-        'Command palette (Ctrl/Cmd+K) untuk navigasi cepat',
-        'Modal studi kasus di setiap proyek',
-        'Dark/light mode dengan penyimpanan preferensi',
-        'Dark/light mode, animasi, dan scroll interaction sejak V1'
+        'Tema gelap dengan aksen biru',
+        'Bagian profil, skills, dan projects',
+        'Form kontak yang bisa menerima pesan lewat email',
+        'Sudah di-deploy dan bisa diakses online'
       ],
-      challenges: 'Di V1-V2: menggabungkan berbagai fitur interaktif sambil menjaga layout tetap responsive, dan menemukan keseimbangan antara menambah visual/interaction dengan menjaga website tetap clean dan ringan. Di V3: menjaga agar setiap micro-interaction tetap terasa halus dan bertujuan, termasuk menghormati preferensi pengguna yang mengaktifkan reduced motion.',
-      learned: 'Bahwa membuat portfolio bukan hanya soal menambah fitur, tapi memilih apa yang perlu ditampilkan, menyusun informasi dengan baik, dan terus mengevaluasi desain dari versi sebelumnya — sampai akhirnya paham cara membangun arsitektur JS modular (ES6 modules) yang tetap rapi walau fitur terus bertambah.'
+      challenges: 'Menyusun struktur informasi yang lengkap sambil menjaga layout tetap rapi dan responsive.',
+      learned: 'Dasar membangun website dari nol, mulai dari struktur halaman, styling, interaksi JavaScript, sampai deploy dan menghubungkan form ke layanan email.'
     }
   }
 ];
@@ -36,28 +38,28 @@ const ICONS = {
 
 function projectCardHTML(project){
   const badge = project.status ? `<span class="badge-soon">${project.status}</span>` : '';
-  const badges = project.tagLabels.map((t) => `<span>${t}</span>`).join('');
   const githubBtn = project.github
     ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">GitHub</a>`
     : '';
   const liveBtn = project.live
-    ? `<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="btn btn-sm">${project.liveLabel || 'Live Demo'}</a>`
+    ? `<a href="${project.live}" target="_blank" rel="noopener noreferrer" class="btn btn-sm">${project.liveLabel || 'Kunjungi'}</a>`
     : '';
 
   return `
     <article class="project-card" data-id="${project.id}" data-category="${project.tags.join(' ')}" data-reveal="up">
-      <div class="project-thumb">
+      <div class="project-thumb${project.thumbnail ? ' has-img' : ''}">
         ${badge}
-        <div class="thumb-icon">${ICONS[project.thumbIcon] || ICONS.code}</div>
+        ${project.thumbnail
+          ? `<img src="${project.thumbnail}" alt="Preview ${project.title}" loading="lazy">`
+          : `<div class="thumb-icon">${ICONS[project.thumbIcon] || ICONS.code}</div>`}
       </div>
       <div class="project-body">
         <h3>${project.title}</h3>
         <p>${project.summary}</p>
-        <div class="tech-badges">${badges}</div>
         <div class="project-actions">
           ${githubBtn}
           ${liveBtn}
-          <button type="button" class="btn btn-ghost btn-sm js-case-study" data-id="${project.id}">Case Study</button>
+          <button type="button" class="btn btn-ghost btn-sm js-case-study" data-id="${project.id}">Detail</button>
         </div>
       </div>
     </article>`;
@@ -112,7 +114,7 @@ export function initProjectModal(){
     const liveLink = qs('#modal-live');
     if(project.github){ githubLink.href = project.github; githubLink.style.display = ''; }
     else { githubLink.style.display = 'none'; }
-    if(project.live){ liveLink.href = project.live; liveLink.textContent = project.liveLabel || 'Live Demo'; liveLink.style.display = ''; }
+    if(project.live){ liveLink.href = project.live; liveLink.textContent = project.liveLabel || 'Kunjungi'; liveLink.style.display = ''; }
     else { liveLink.style.display = 'none'; }
 
     overlay.classList.add('open');
