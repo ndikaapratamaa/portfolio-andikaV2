@@ -20,11 +20,12 @@ document.addEventListener('DOMContentLoaded', () => {
   initBackToTop();
   initThemeToggle();
   initScrollProgress();
+  // Render project cards first so the scroll-reveal observer can see them.
+  renderProjects();
   initScrollReveal();
   initStatCounters();
   initHeroTerminal();
 
-  renderProjects();
   initProjectFilter();
   initProjectModal();
   initGitHub();
