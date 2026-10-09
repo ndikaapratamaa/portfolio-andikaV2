@@ -36,7 +36,6 @@ html.light-mode{
   --shadow-soft: 0 14px 40px -20px rgba(15,23,42,0.2);
 }
 
-/* ---------- Reset ---------- */
 *, *::before, *::after{ box-sizing: border-box; }
 html{ scroll-behavior: smooth; }
 body{
@@ -76,7 +75,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .skip-link:focus{ top: 1rem; }
 
-/* ---------- Utility ---------- */
 .container{ width: min(1240px, 92%); margin-inline: auto; }
 .eyebrow{
   font-family: var(--font-mono); font-size: .78rem; letter-spacing: .12em;
@@ -126,7 +124,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 [data-reveal="scale"]{ transform: scale(.92); }
 [data-reveal].in-view{ opacity: 1; transform: none; }
 
-/* ---------- Loading screen ---------- */
 #loader{
   position: fixed; inset: 0; z-index: 9999; background: var(--bg);
   display: flex; align-items: center; justify-content: center;
@@ -140,14 +137,12 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .loader-fill{ height: 100%; width: 0%; background: linear-gradient(90deg, var(--primary), var(--accent)); animation: loaderFill 1.4s var(--ease) forwards; }
 @keyframes loaderFill{ to{ width: 100%; } }
 
-/* ---------- Scroll progress ---------- */
 #scroll-progress{
   position: fixed; top: 0; left: 0; height: 3px;
   background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
   width: 0%; z-index: 1001; transition: width .1s linear;
 }
 
-/* ---------- Navbar ---------- */
 .navbar{
   position: fixed; top: 0; left: 0; right: 0; z-index: 900; height: var(--nav-h);
   display: flex; align-items: center; border-bottom: 1px solid transparent;
@@ -203,16 +198,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hamburger.open span:nth-child(3){ transform: translateY(-6px) rotate(-45deg); }
 
 @media (max-width: 900px){
-  /* .nav-links-wrap is no longer opened by anything — #hamburger now
-     opens #cmdk-overlay directly (see js/modules/command-palette.js), so
-     the mobile menu is the exact same command-palette UI as desktop.
-     Nothing to size/animate here any more; just make sure it stays
-     invisible and out of the way. */
+
   .nav-links-wrap{ display: none; }
   .hamburger{ display: flex; }
 }
 
-/* ---------- Hero ---------- */
 .hero{ min-height: 100vh; display: flex; align-items: center; padding-top: var(--nav-h); overflow: hidden; }
 .hero-blobs{ position: absolute; inset: 0; z-index: -1; }
 .blob{ position: absolute; border-radius: 50%; filter: blur(90px); opacity: .22; animation: float 18s ease-in-out infinite; }
@@ -242,7 +232,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-link-cta:hover .hero-link-arrow{ transform: translateX(4px); }
 .hero-social{ display: flex; gap: .9rem; margin-top: 2.6rem; }
 
-/* Staggered, subtle entrance for hero copy — each child reveals in turn */
 .hero-content > [data-reveal]{ transition-duration: .7s; }
 .hero-content > *:nth-child(1){ transition-delay: .05s; }
 .hero-content > *:nth-child(2){ transition-delay: .12s; }
@@ -251,10 +240,8 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .hero-content > *:nth-child(5){ transition-delay: .33s; }
 .hero-content > *:nth-child(6){ transition-delay: .4s; }
 
-/* Shared float used by the Meet section photo frame */
 @keyframes portraitFloat{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-12px); } }
 
-/* The terminal itself — hero's visual anchor */
 .terminal{
   border-radius: var(--radius-lg); background: var(--surface);
   border: 1px solid var(--border);
@@ -300,7 +287,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .scroll-cue .line{ width: 1px; height: 34px; background: linear-gradient(var(--primary), transparent); animation: scrollcue 1.8s ease-in-out infinite; }
 @keyframes scrollcue{ 0%{ transform: scaleY(0); transform-origin: top; } 50%{ transform: scaleY(1); transform-origin: top; } 51%{ transform-origin: bottom; } 100%{ transform: scaleY(0); transform-origin: bottom; } }
 
-/* ---------- Meet Andika: two-column intro ---------- */
 .meet-grid{ display: grid; grid-template-columns: 1.05fr .95fr; gap: 4rem; align-items: center; }
 
 .meet-content h2{ font-size: clamp(1.9rem, 3.2vw, 2.7rem); margin-top: .6rem; }
@@ -314,8 +300,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 22%, transparent), color-mix(in srgb, var(--secondary) 22%, transparent));
 }
 
-/* Photo: floats on an outer frame; hover-scale lives on the inner viewer
-   so the two transforms never fight each other. */
 .meet-photo{ display: flex; flex-direction: column; align-items: flex-end; }
 
 .meet-frame{
@@ -336,18 +320,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 .meet-slide{
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  opacity: 0; transition: opacity .8s var(--ease);
+  opacity: 0;
 }
 .meet-slide.is-active{ opacity: 1; }
-
-.meet-dots{ display: flex; justify-content: center; gap: .6rem; margin-top: 1.5rem; }
-.meet-dot{
-  width: 9px; height: 9px; border-radius: 50%; padding: 0;
-  background: var(--border); border: none; cursor: pointer;
-  transition: background .3s var(--ease), transform .3s var(--ease-spring);
-}
-.meet-dot:hover{ transform: scale(1.2); }
-.meet-dot.is-active{ background: linear-gradient(135deg, var(--primary), var(--secondary)); transform: scale(1.15); }
 
 @media (max-width: 900px){
   .meet-grid{ grid-template-columns: 1fr; gap: 3rem; }
@@ -357,10 +332,9 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (prefers-reduced-motion: reduce){
   .meet-frame{ animation: none; }
-  .meet-viewer, .meet-slide{ transition: none; }
+  .meet-viewer{ transition: none; }
 }
 
-/* ---------- About: bento grid ---------- */
 .bento{
   display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(160px, auto);
   gap: 1.4rem;
@@ -398,7 +372,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .bento-card.row-2{ grid-row: span 1; }
 }
 
-/* ---------- Projects ---------- */
 .filter-bar{ display: flex; gap: .7rem; flex-wrap: wrap; margin-bottom: 2.6rem; }
 .filter-btn{
   padding: .55rem 1.2rem; border-radius: 999px; font-size: .85rem; font-weight: 600;
@@ -469,7 +442,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (max-width: 780px){ .project-grid{ grid-template-columns: 1fr; } }
 
-/* ---------- Case study modal ---------- */
 .modal-overlay{
   position: fixed; inset: 0; z-index: 1100; display: flex; align-items: center; justify-content: center;
   padding: 2rem; background: rgba(2,6,23,0.72); backdrop-filter: blur(6px);
@@ -500,7 +472,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .modal-section ul li::before{ content: "→ "; color: var(--primary); }
 .modal-actions{ display: flex; gap: .7rem; margin-top: 1.8rem; flex-wrap: wrap; }
 
-/* ---------- Timeline ---------- */
 .timeline{ position: relative; max-width: 660px; margin: 0 auto; padding-left: 2.6rem; }
 .timeline::before{
   content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 2px;
@@ -519,7 +490,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .timeline-item h3{ font-size: 1.08rem; margin: .35rem 0 .35rem; }
 .timeline-item p{ color: var(--muted); font-size: .92rem; }
 
-/* ---------- Statistics ---------- */
 .stats-grid{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
 .stat-card{ text-align: center; padding: 2.2rem 1.2rem; border-radius: var(--radius-lg); background: var(--card); border: 1px solid var(--border); }
 .stat-number{
@@ -530,7 +500,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .stat-label{ color: var(--muted); margin-top: .6rem; font-size: .88rem; }
 @media (max-width: 640px){ .stats-grid{ grid-template-columns: 1fr; } }
 
-/* ---------- Workflow: idea-to-interface timeline ---------- */
 .workflow-list{ display: flex; flex-direction: column; margin-top: 3rem; }
 
 .workflow-step{
@@ -557,9 +526,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .workflow-num{ width: 3.2rem; font-size: 1.6rem; }
 }
 
-/* ---------- Contact: premium final CTA ---------- */
-/* Slightly tighter top offset than the default section-pad rhythm — this
-   section closes the page, so it can sit a touch closer to what precedes it. */
 #contact.section-pad{ padding-top: 5rem; }
 @media (max-width: 640px){ #contact.section-pad{ padding-top: 3.25rem; } }
 
@@ -612,7 +578,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (max-width: 860px){ .contact-grid{ grid-template-columns: 1fr; } .contact-lead{ max-width: none; } }
 
-/* ---------- Footer: minimal closing, not a second CTA section ---------- */
 .site-footer{
   padding: 3.5rem 0 2.6rem; text-align: center;
   border-top: 1px solid var(--border);
@@ -629,7 +594,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 #back-to-top.show{ opacity: 1; visibility: visible; transform: translateY(0); }
 #back-to-top svg{ width: 18px; height: 18px; }
 
-/* ---------- Command palette (Ctrl/Cmd + K) ---------- */
 .cmdk-overlay{
   position: fixed; inset: 0; z-index: 1300; display: flex; align-items: flex-start; justify-content: center;
   padding-top: 12vh; background: rgba(2,6,23,0.72); backdrop-filter: blur(6px);
@@ -662,24 +626,13 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .cmdk-empty{ padding: 1.4rem; text-align: center; color: var(--muted); font-size: .88rem; }
 
 @media (max-width: 900px){
-  /* Show every item at once on mobile instead of relying on internal
-     scroll — with ~9 static items this comfortably fits on screen, and
-     it sidesteps touch-scroll problems some mobile browsers have with
-     nested overflow regions entirely. The overlay itself becomes the
-     (page-level, always reliable) scroll container as a safety net, in
-     case the list ever grows long enough not to fit.
-     NOTE: this block must stay AFTER the base .cmdk-overlay/.cmdk-list
-     rules above — with equal specificity, CSS gives the win to whichever
-     rule is declared later in the file, media query or not. Moving this
-     block back above the base rules silently disables it again. */
+
   .cmdk-overlay{ overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 1.25rem; align-items: flex-start; }
   .cmdk-list{ max-height: none; overflow-y: visible; }
 }
 
-/* No horizontal scroll safety */
 html, body{ max-width: 100%; overflow-x: hidden; }
 
-/* ---------- Google Sign-In entry point ---------- */
 .auth-slot{ display: flex; align-items: center; }
 
 .google-btn{
@@ -699,7 +652,6 @@ html, body{ max-width: 100%; overflow-x: hidden; }
   .google-btn{ padding: 0; width: 42px; height: 42px; justify-content: center; border-radius: 50%; }
 }
 
-/* Small "coming soon" toast (e.g. Google Sign-In not ready yet) */
 .auth-toast{
   position: fixed; left: 50%; bottom: 28px; z-index: 10000;
   transform: translate(-50%, 16px);
