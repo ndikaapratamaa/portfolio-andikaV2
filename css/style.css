@@ -674,3 +674,15 @@ html, body{ max-width: 100%; overflow-x: hidden; }
 .auth-toast.show{
   opacity: 1; transform: translate(-50%, 0);
 }
+
+/* Placeholder "???" with animated rainbow effect */
+.rainbow-text{
+  font-weight: 800; letter-spacing: .15em;
+  background: linear-gradient(90deg,#ff3b3b,#ff9f1c,#ffe600,#2ecc71,#00c2ff,#6c5ce7,#ff4fd8,#ff3b3b);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: rainbow-shift 3s linear infinite;
+}
+@keyframes rainbow-shift{ to{ background-position: 200% 0; } }
+@media (prefers-reduced-motion: reduce){ .rainbow-text{ animation: none; } }
