@@ -43,15 +43,78 @@ export const PROJECTS = [
       solution: 'Membangun satu platform dengan Next.js yang menggabungkan kuis, statistik, kompetisi, leaderboard, dan berita, dilengkapi sistem XP dan tantangan harian agar pengguna terus kembali.',
       features: [
         'Navigasi lengkap: Home, Quiz, Statistics, Competitions, Leaderboard, News, Profile, dll',
-        '<span class="rainbow-text">???</span>',
-        '<span class="rainbow-text">???</span>',
-        '<span class="rainbow-text">???</span>',
-        '<span class="rainbow-text">???</span>',
-        '<span class="rainbow-text">???</span>',
-        '<span class="rainbow-text">???</span>'
+        '',
+        '',
+        '',
+        '',
+        '',
+        ''
       ],
       challenges: 'Menjaga banyak halaman dan fitur tetap konsisten secara tampilan dan mudah dinavigasi.',
       learned: 'Membangun aplikasi multi-halaman dengan Next.js, mengelola struktur komponen, serta membawa proyek sampai benar-benar bisa dicoba orang lain.'
+    }
+  },
+  {
+    id: 'soon-1',
+    title: '???',
+    placeholder: true,
+    tags: [],
+    tagLabels: [],
+    summary: '???',
+    thumbIcon: 'code',
+    thumbnail: 'assets/images/thumb-coming-soon.jpg',
+    status: 'Coming Soon',
+    github: null,
+    live: null,
+    liveLabel: null,
+    caseStudy: {
+      problem: '???',
+      solution: '???',
+      features: ['???'],
+      challenges: '???',
+      learned: '???'
+    }
+  },
+  {
+    id: 'soon-2',
+    title: '???',
+    placeholder: true,
+    tags: [],
+    tagLabels: [],
+    summary: '???',
+    thumbIcon: 'code',
+    thumbnail: 'assets/images/thumb-coming-soon.jpg',
+    status: 'Coming Soon',
+    github: null,
+    live: null,
+    liveLabel: null,
+    caseStudy: {
+      problem: '???',
+      solution: '???',
+      features: ['???'],
+      challenges: '???',
+      learned: '???'
+    }
+  },
+  {
+    id: 'soon-3',
+    title: '???',
+    placeholder: true,
+    tags: [],
+    tagLabels: [],
+    summary: '???',
+    thumbIcon: 'code',
+    thumbnail: 'assets/images/thumb-coming-soon.jpg',
+    status: 'Coming Soon',
+    github: null,
+    live: null,
+    liveLabel: null,
+    caseStudy: {
+      problem: '???',
+      solution: '???',
+      features: ['???'],
+      challenges: '???',
+      learned: '???'
     }
   }
 ];
@@ -79,8 +142,8 @@ function projectCardHTML(project){
           : `<div class="thumb-icon">${ICONS[project.thumbIcon] || ICONS.code}</div>`}
       </div>
       <div class="project-body">
-        <h3>${project.title}</h3>
-        <p>${project.summary}</p>
+        <h3>${project.placeholder ? '<span class="rainbow-text">???</span>' : project.title}</h3>
+        <p>${project.placeholder ? '<span class="rainbow-text">???</span>' : project.summary}</p>
         <div class="project-actions">
           ${githubBtn}
           ${liveBtn}
@@ -125,12 +188,18 @@ export function initProjectModal(){
   const open = (id) => {
     const project = PROJECTS.find((p) => p.id === id);
     if(!project) return;
-    qs('#modal-title').textContent = project.title;
-    qs('#modal-problem').textContent = project.caseStudy.problem;
-    qs('#modal-solution').textContent = project.caseStudy.solution;
-    qs('#modal-features').innerHTML = project.caseStudy.features.map((f) => `<li>${f}</li>`).join('');
-    qs('#modal-challenges').textContent = project.caseStudy.challenges;
-    qs('#modal-learned').textContent = project.caseStudy.learned;
+    const Q = '<span class="rainbow-text">???</span>';
+    const cs = project.caseStudy;
+    const setText = (sel, val) => {
+      const el = qs(sel);
+      if(project.placeholder) el.innerHTML = Q; else el.textContent = val;
+    };
+    setText('#modal-title', project.title);
+    setText('#modal-problem', cs.problem);
+    setText('#modal-solution', cs.solution);
+    setText('#modal-challenges', cs.challenges);
+    setText('#modal-learned', cs.learned);
+    qs('#modal-features').innerHTML = cs.features.map((f) => `<li>${f}</li>`).join('');
 
     const githubLink = qs('#modal-github');
     const liveLink = qs('#modal-live');
