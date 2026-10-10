@@ -1,8 +1,5 @@
 import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
 import { animateStatValue } from './counters.js';
-
-// Single source of truth for project content — reused by the grid,
-// the case-study modal, and the command palette's project search.
 export const PROJECTS = [
   {
     id: 'portfolio-v1',
@@ -27,6 +24,34 @@ export const PROJECTS = [
       ],
       challenges: 'Menyusun struktur informasi yang lengkap sambil menjaga layout tetap rapi dan responsive.',
       learned: 'Dasar membangun website dari nol, mulai dari struktur halaman, styling, interaksi JavaScript, sampai deploy dan menghubungkan form ke layanan email.'
+    }
+  },
+  {
+    id: 'football-universe-elite',
+    title: 'Football Universe Elite',
+    tags: ['nextjs', 'javascript'],
+    tagLabels: ['Next.js', 'JavaScript'],
+    summary: 'Platform sepak bola interaktif dengan kuis, statistik, kompetisi, leaderboard, berita, dan tantangan harian "Guess The Player" yang memberi XP.',
+    thumbIcon: 'code',
+    thumbnail: 'assets/images/thumb-football-universe-elite.jpg',
+    status: null,
+    github: null,
+    live: 'https://football-universe-elite.vercel.app/',
+    liveLabel: 'Kunjungi',
+    caseStudy: {
+      problem: 'Penggemar sepak bola biasanya harus berpindah-pindah situs untuk kuis, statistik, dan berita, dan jarang ada yang membuat pengalamannya terasa seperti game.',
+      solution: 'Membangun satu platform dengan Next.js yang menggabungkan kuis, statistik, kompetisi, leaderboard, dan berita, dilengkapi sistem XP dan tantangan harian agar pengguna terus kembali.',
+      features: [
+        'Navigasi lengkap: Home, Quiz, Statistics, Competitions, Leaderboard, News, Profile, dll',
+        '<span class="rainbow-text">???</span>',
+        '<span class="rainbow-text">???</span>',
+        '<span class="rainbow-text">???</span>',
+        '<span class="rainbow-text">???</span>',
+        '<span class="rainbow-text">???</span>',
+        '<span class="rainbow-text">???</span>'
+      ],
+      challenges: 'Menjaga banyak halaman dan fitur tetap konsisten secara tampilan dan mudah dinavigasi.',
+      learned: 'Membangun aplikasi multi-halaman dengan Next.js, mengelola struktur komponen, serta membawa proyek sampai benar-benar bisa dicoba orang lain.'
     }
   }
 ];
@@ -69,9 +94,6 @@ export function renderProjects(){
   const grid = qs('#project-grid');
   if(!grid) return;
   grid.innerHTML = PROJECTS.map(projectCardHTML).join('');
-
-  // Projects Completed is real, not a made-up number — it mirrors
-  // however many projects actually exist in the array above.
   const stat = qs('#stat-projects');
   if(stat) animateStatValue(stat, PROJECTS.length, '+');
 }
@@ -137,7 +159,5 @@ export function initProjectModal(){
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape' && overlay.classList.contains('open')) close();
   });
-
-  // Exposed so the command palette can jump straight to a case study.
   window.__openProjectModal = open;
 }
