@@ -1,5 +1,4 @@
 import { qs, qsa, lockBodyScroll, unlockBodyScroll } from './utils.js';
-import { PROJECTS } from './projects.js';
 
 const STATIC_ITEMS = [
   { label: 'Home', hint: 'Go to section', action: () => scrollToId('home') },
@@ -10,25 +9,20 @@ const STATIC_ITEMS = [
   { label: 'Journey', hint: 'Go to section', action: () => scrollToId('journey') },
   { label: 'Contact', hint: 'Go to section', action: () => scrollToId('contact') },
   { label: 'Toggle theme', hint: 'Dark / light', action: () => qs('#theme-toggle')?.click() },
+  { label: 'Di Balik Website Ini', hint: 'Cara web ini dibuat', action: () => window.__openProjectModal?.('site-info') },
 ];
 
 function scrollToId(id){
   qs(`#${id}`)?.scrollIntoView({ behavior: 'smooth' });
 }
 
-function projectItems(){
-  return PROJECTS.map((p) => ({
-    label: p.title,
-    hint: 'Case study',
-    action: () => {
-      scrollToId('projects');
-      setTimeout(() => window.__openProjectModal?.(p.id), 500);
-    }
-  }));
-}
-
 export function initCommandPalette(){
   const overlay = qs('#cmdk-overlay');
+  // Both triggers open the exact same overlay: #cmdk-trigger (search bar,
+  // shown on desktop) and #hamburger (shown on mobile, hidden on desktop
+  // via CSS). This guarantees the mobile menu is pixel-identical to the
+  // desktop command palette — it's literally the same component, not a
+  // separate lookalike that can drift out of sync.
   const triggers = qsa('#cmdk-trigger, #hamburger');
   const input = qs('#cmdk-input');
   const list = qs('#cmdk-list');
@@ -37,7 +31,7 @@ export function initCommandPalette(){
   let selected = 0;
   let items = [];
 
-  const allItems = () => [...STATIC_ITEMS, ...projectItems()];
+  const allItems = () => STATIC_ITEMS;
 
   function render(query = ''){
     const q = query.trim().toLowerCase();
@@ -68,7 +62,10 @@ export function initCommandPalette(){
     lockBodyScroll();
     input.value = '';
     render();
-    setTimeout(() => input.focus(), 50);
+    // Di layar sentuh (HP), jangan fokus otomatis supaya keyboard tidak muncul sendiri.
+    if(!window.matchMedia('(pointer: coarse)').matches){
+      setTimeout(() => input.focus(), 50);
+    }
   }
 
   function close(){
