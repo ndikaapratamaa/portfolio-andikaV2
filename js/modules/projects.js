@@ -119,6 +119,72 @@ export const PROJECTS = [
   }
 ];
 
+// Di balik website ini — dibuka dari command palette (bukan kartu proyek).
+// Memakai `sections` (bukan caseStudy) agar tampilannya berbeda dari detail proyek.
+export const SITE_INFO = {
+  id: 'site-info',
+  title: 'Di Balik Website Ini',
+  github: null,
+  live: null,
+  sections: [
+    {
+      heading: 'Tujuan',
+      text: 'Website ini dibuat sebagai tempat memperkenalkan diri, menampilkan proyek, dan mencatat perkembangan belajar front-end dari waktu ke waktu.'
+    },
+    {
+      heading: 'Isi website',
+      facts: [
+        ['Home', 'Perkenalan singkat dan kartu kode profil'],
+        ['Meet Andika', 'Sisi personal di luar kode, lengkap dengan galeri foto'],
+        ['About', 'Profil, cara berpikir, dan tujuan ke depan'],
+        ['Workflow', 'Alur kerja dari Discover sampai Deploy'],
+        ['Projects', 'Kumpulan proyek beserta detail ceritanya'],
+        ['Journey', 'Perjalanan belajar dalam bentuk timeline'],
+        ['Contact', 'Form untuk mengirim pesan langsung ke email']
+      ]
+    },
+    {
+      heading: 'Fitur',
+      list: [
+        'Tema gelap dan terang yang diingat oleh browser',
+        'Menu pencarian cepat untuk berpindah antar bagian',
+        'Kartu kode di hero dengan efek mengetik',
+        'Layar loading dan animasi saat halaman di-scroll',
+        'Galeri foto yang berganti otomatis',
+        'Angka statistik yang bergerak saat terlihat',
+        'Efek sorot mengikuti kursor di desktop',
+        'Tampilan responsive untuk HP, tablet, dan laptop'
+      ]
+    },
+    {
+      heading: 'Perkembangan',
+      list: [
+        'Berawal dari Portfolio V1 dengan tema gelap beraksen biru',
+        'Berkembang lewat beberapa versi hingga tampilan yang sekarang',
+        'Bagian GitHub diganti Workflow agar lebih menceritakan cara kerja',
+        'Galeri di Meet Andika ditambahkan untuk memperlihatkan sisi personal',
+        'Form kontak dihubungkan agar pesan masuk langsung ke email',
+        'Logo di navbar dihapus supaya tampilan lebih bersih'
+      ]
+    },
+    {
+      heading: 'Kualitas',
+      list: [
+        'Kode dipisah per fitur, jadi proyek baru bisa ditambahkan tanpa mengubah bagian lain',
+        'Gambar dimuat saat dibutuhkan dan thumbnail sudah dikompres',
+        'Pratinjau saat link dibagikan dan SEO dasar sudah diatur',
+        'Tautan lompat ke konten utama dan label ARIA pada tombol serta dialog',
+        'Menu pencarian bisa dipakai lewat keyboard: panah, Enter, dan Esc',
+        'Animasi dikurangi untuk pengunjung yang memilih gerak minimal'
+      ]
+    },
+    {
+      heading: 'Masukan',
+      text: 'Punya saran untuk website ini? Kirim lewat bagian Contact.'
+    }
+  ]
+};
+
 const ICONS = {
   code: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 8 4 12l5 4M15 8l5 4-5 4"/></svg>`,
   weather: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>`
@@ -186,20 +252,37 @@ export function initProjectModal(){
   const closeBtn = qs('#modal-close');
 
   const open = (id) => {
-    const project = PROJECTS.find((p) => p.id === id);
+    const project = id === SITE_INFO.id ? SITE_INFO : PROJECTS.find((p) => p.id === id);
     if(!project) return;
-    const Q = '<span class="rainbow-text">???</span>';
-    const cs = project.caseStudy;
-    const setText = (sel, val) => {
-      const el = qs(sel);
-      if(project.placeholder) el.innerHTML = Q; else el.textContent = val;
-    };
-    setText('#modal-title', project.title);
-    setText('#modal-problem', cs.problem);
-    setText('#modal-solution', cs.solution);
-    setText('#modal-challenges', cs.challenges);
-    setText('#modal-learned', cs.learned);
-    qs('#modal-features').innerHTML = cs.features.map((f) => `<li>${f}</li>`).join('');
+    const fixed = qsa('#project-modal .modal > .modal-section');
+    const custom = qs('#modal-custom');
+    if(project.sections){
+      qs('#modal-title').textContent = project.title;
+      fixed.forEach((el) => { el.style.display = 'none'; });
+      custom.innerHTML = project.sections.map((sec) => {
+        let body = '';
+        if(sec.text) body = `<p>${sec.text}</p>`;
+        else if(sec.list) body = `<ul>${sec.list.map((f) => `<li>${f}</li>`).join('')}</ul>`;
+        else if(sec.facts) body = `<div class="modal-facts">${sec.facts.map(([k, v]) => `<div class="modal-fact"><span>${k}</span><span>${v}</span></div>`).join('')}</div>`;
+        else if(sec.chips) body = `<div class="tech-badges">${sec.chips.map((c) => `<span>${c}</span>`).join('')}</div>`;
+        return `<div class="modal-section"><h4>${sec.heading}</h4>${body}</div>`;
+      }).join('');
+    } else {
+      custom.innerHTML = '';
+      fixed.forEach((el) => { el.style.display = ''; });
+      const Q = '<span class="rainbow-text">???</span>';
+      const cs = project.caseStudy;
+      const setText = (sel, val) => {
+        const el = qs(sel);
+        if(project.placeholder) el.innerHTML = Q; else el.textContent = val;
+      };
+      setText('#modal-title', project.title);
+      setText('#modal-problem', cs.problem);
+      setText('#modal-solution', cs.solution);
+      setText('#modal-challenges', cs.challenges);
+      setText('#modal-learned', cs.learned);
+      qs('#modal-features').innerHTML = cs.features.map((f) => `<li>${f}</li>`).join('');
+    }
 
     const githubLink = qs('#modal-github');
     const liveLink = qs('#modal-live');
