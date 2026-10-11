@@ -477,6 +477,11 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .modal-section p, .modal-section li{ color: var(--muted); font-size: .93rem; }
 .modal-section ul{ display: flex; flex-direction: column; gap: .4rem; }
 .modal-section ul li::before{ content: "→ "; color: var(--primary); }
+.modal-facts{ display: flex; flex-direction: column; }
+.modal-fact{ display: flex; justify-content: space-between; gap: 1rem; padding: .6rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+.modal-fact:last-child{ border-bottom: none; }
+.modal-fact span:first-child{ color: var(--muted); }
+.modal-fact span:last-child{ color: var(--text); text-align: right; }
 .modal-actions{ display: flex; gap: .7rem; margin-top: 1.8rem; flex-wrap: wrap; }
 
 .timeline{ position: relative; max-width: 660px; margin: 0 auto; padding-left: 2.6rem; }
