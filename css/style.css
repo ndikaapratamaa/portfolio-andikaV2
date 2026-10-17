@@ -691,3 +691,14 @@ html, body{ max-width: 100%; overflow-x: hidden; }
 }
 @keyframes rainbow-shift{ to{ background-position: 200% 0; } }
 @media (prefers-reduced-motion: reduce){ .rainbow-text{ animation: none; } }
+
+/* Tab kecil menuju halaman side project */
+.fun-toggle-wrap{ margin-top: 1.8rem; }
+.fun-toggle{
+  display: inline-flex; align-items: center; gap: .5rem; font-size: .85rem; font-weight: 500; color: var(--text);
+  padding: .55rem 1.1rem; border-radius: 999px; background: color-mix(in srgb, var(--secondary) 12%, transparent);
+  border: 1px dashed color-mix(in srgb, var(--secondary) 55%, var(--border)); transition: all .3s var(--ease);
+}
+.fun-toggle span{ transition: transform .3s var(--ease); }
+.fun-toggle:hover{ background: color-mix(in srgb, var(--secondary) 28%, transparent); border-style: solid; transform: translateY(-2px); }
+.fun-toggle:hover span{ transform: translateX(4px); }
