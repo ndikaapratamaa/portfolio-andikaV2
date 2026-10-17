@@ -96,3 +96,72 @@ h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;mar
   .card.soon b{font-size:1.9rem}
   .foot{padding:1.2rem 1.1rem 2rem;margin-top:1rem}
 }
+
+/* Percantik: statistik, marquee, judul koleksi, bintang jatuh, chip live */
+.section-title{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.section-title h3{font-size:.8rem;font-family:ui-monospace,monospace;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+.section-title i{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.live{display:inline-flex;align-items:center;gap:.4rem;align-self:flex-start;font-family:ui-monospace,monospace;font-size:.66rem;color:#4ade80}
+.live i{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;animation:pulse 2s ease-in-out infinite}
+.shoot{position:fixed;z-index:0;pointer-events:none;width:140px;height:1px;opacity:0;background:linear-gradient(90deg,transparent,#fff)}
+.shoot.s1{top:10%;left:78%;animation:shoot 9s linear infinite}
+.shoot.s2{top:34%;left:92%;animation:shoot 13s linear 5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(145deg)}2%{opacity:1}9%{opacity:0;transform:translate(-460px,320px) rotate(145deg)}100%{opacity:0}}
+
+/* Mode HP: kartu kompak (thumbnail kecil di kiri) */
+@media (max-width:600px){
+              .section-title{margin-bottom:1rem}
+  .card:not(.soon){flex-direction:row;align-items:center;gap:.9rem;padding:.75rem;border-radius:16px}
+  .card:not(.soon) .thumb{flex:0 0 92px;width:92px;height:92px;aspect-ratio:1;border-radius:12px}
+  .card .thumb::after,.badge{display:none}
+  .card:not(.soon) .body{padding:0;gap:.3rem;min-width:0}
+  .body h2{font-size:1rem}
+  .body p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:.8rem;flex:none}
+  .open{margin-top:.15rem;font-size:.78rem}
+  .arrow{width:26px;height:26px;font-size:.8rem}
+  .card.soon{min-height:0;flex-direction:row;text-align:left;justify-content:flex-start;gap:.9rem;padding:1rem}
+  .card.soon b{font-size:1.8rem}
+  .card.soon span{max-width:none}
+}
+
+/* Desain ulang: konstelasi hero, kartu unggulan, banner slim */
+h1{background:linear-gradient(110deg,#fff 10%,#7dd3fc 45%,#22d3ee 70%,#fff 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{position:relative;margin-bottom:2.4rem}
+.hero h1,.hero .sub{position:relative;z-index:1}
+.constel{position:absolute;right:0;top:-1.5rem;width:min(420px,46%);opacity:.9;pointer-events:none}
+.constel .ln{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 3.2s ease forwards}
+.constel .nd{animation:twinkle 3.5s ease-in-out infinite}
+.constel .ring{transform-origin:300px 60px;animation:spin 14s linear infinite}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.section-title .n{font-family:ui-monospace,monospace;font-size:.72rem;padding:.15rem .55rem;border-radius:999px;border:1px solid var(--border);color:var(--text)}
+
+
+.card.soon{grid-column:1/-1;flex-direction:row;justify-content:flex-start;text-align:left;min-height:0;gap:1.1rem;padding:1.2rem 1.6rem;background:rgba(15,26,48,.3)}
+.card.soon div{display:flex;flex-direction:column}
+.card.soon b{font-size:1.9rem}
+.card.soon span{max-width:none}
+
+@media (max-width:900px){
+        }
+@media (max-width:600px){
+  .constel{width:150px;top:-.6rem;opacity:.5}
+  .hero{margin-bottom:1.6rem}
+                .card.soon{padding:.9rem 1rem;gap:.8rem}
+  .card.soon b{font-size:1.6rem}
+}
+
+/* Rapi: hero berupa banner konstelasi, kartu ukuran wajar */
+.wrap{padding-top:2.4rem}
+.hero{height:170px;margin-bottom:1.2rem}
+.constel{left:50%;right:auto;top:0;width:min(440px,92%);height:100%;transform:translateX(-50%);opacity:.95}
+.constel .ring{transform-box:fill-box;transform-origin:center}
+.grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),340px));justify-content:start}
+.card.soon{grid-column:1/-1}
+@media (max-width:600px){
+  .wrap{padding-top:1.2rem}
+  .hero{height:135px;margin-bottom:.8rem}
+  .constel{width:min(320px,100%);opacity:1}
+  .grid{grid-template-columns:1fr}
+}
