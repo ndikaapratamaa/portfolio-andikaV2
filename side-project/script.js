@@ -1,19 +1,16 @@
-// Tambah proyek baru cukup dengan menambah satu objek di array ini.
-// Thumbnail: kalau "image" kosong, otomatis memakai gambar sementara (img/placeholder.jpg).
 const PLACEHOLDER = 'img/placeholder.jpg';
-
 const PROJECTS = [
   {
     title: 'Surat Kecil Untukmu',
     desc: 'Surat cinta interaktif: pesan acak, efek mesin tik, tombol "Tidak" yang suka kabur, confetti, dan musik romantis.',
     url: 'https://surat-kecil-untukmu.vercel.app/',
     badge: 'Interaktif',
-    image: null // isi misal 'img/surat.png' kalau sudah punya thumbnail sendiri
+    image: null 
   }
 ];
 
 const grid = document.getElementById('grid');
-document.getElementById('count').textContent = PROJECTS.length;
+document.getElementById('count').textContent = String(PROJECTS.length).padStart(2, '0');
 
 const cardHTML = (p, i) => `
   <a class="card" style="animation-delay:${i * 90}ms" href="${p.url}" target="_blank" rel="noopener noreferrer">
@@ -23,6 +20,7 @@ const cardHTML = (p, i) => `
       <span class="num">${String(i + 1).padStart(2, '0')}</span>
     </div>
     <div class="body">
+      <span class="live"><i></i>Live</span>
       <h2>${p.title}</h2>
       <p>${p.desc}</p>
       <span class="open">Buka proyek <span class="arrow">→</span></span>
@@ -31,8 +29,9 @@ const cardHTML = (p, i) => `
 
 const soonHTML = (i) => `
   <div class="card soon" style="animation-delay:${i * 90}ms">
-    <b>🍳</b><strong>Lagi dimasak di dapur kode</strong>
-    <span>Ide absurd berikutnya sedang dirakit. Mampir lagi nanti.</span>
+    <b>🍳</b>
+    <div><strong>Lagi dimasak di dapur kode</strong>
+    <span>Ide berikutnya sedang dirakit. Mampir lagi nanti.</span></div>
   </div>`;
 
 grid.innerHTML = PROJECTS.map(cardHTML).join('') + soonHTML(PROJECTS.length);
