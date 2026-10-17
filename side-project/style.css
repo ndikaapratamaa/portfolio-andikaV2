@@ -1,0 +1,98 @@
+:root{
+  --bg:#020617; --card:#0F1A30; --primary:#38BDF8; --secondary:#8B5CF6; --accent:#F472B6;
+  --text:#F8FAFC; --muted:#94A3B8; --border:rgba(148,163,184,.14);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);min-height:100vh;line-height:1.6;overflow-x:hidden;
+  font-family:'Inter Variable','Inter',system-ui,-apple-system,sans-serif;
+  background-image:linear-gradient(rgba(148,163,184,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(148,163,184,.04) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+a{color:inherit;text-decoration:none}
+
+/* Efek latar: bintang berkelip */
+.stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+.stars b{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--w)}
+
+/* Topbar */
+.topbar{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(2,6,23,.65);border-bottom:1px solid var(--border)}
+.topbar-inner{max-width:1100px;margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center}
+.back{font-size:.88rem;color:var(--muted);transition:color .25s,transform .25s var(--ease)}
+.back:hover{color:var(--text);transform:translateX(-3px)}
+
+.wrap{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:4.5rem 1.5rem 3rem}
+
+/* Hero */
+.hero{margin-bottom:3rem}
+h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem;
+  background:linear-gradient(110deg,#fff 10%,var(--primary) 40%,var(--secondary) 65%,var(--accent) 85%,#fff 100%);background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+.sub{color:var(--muted);max-width:54ch;font-size:1.05rem}
+.count{margin-top:1.2rem;font-family:ui-monospace,'JetBrains Mono',monospace;font-size:.8rem;color:var(--muted)}
+.count strong{color:var(--text)}
+
+/* Grid & cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,310px),1fr));gap:1.6rem;perspective:1000px}
+.card{
+  --mx:50%;--my:50%;position:relative;display:flex;flex-direction:column;border-radius:22px;
+  background:rgba(15,26,48,.72);backdrop-filter:blur(10px);border:1px solid var(--border);
+  transition:transform .35s var(--ease),box-shadow .4s,border-color .3s;animation:rise .8s var(--ease) both;will-change:transform;
+}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;opacity:0;transition:opacity .35s;
+  background:linear-gradient(135deg,var(--primary),var(--secondary),var(--accent));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.card:hover{box-shadow:0 30px 60px -28px rgba(0,0,0,.8)}
+.card:hover::before{opacity:1}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;border-radius:21px 21px 0 0;background:#05070f}
+.thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.card:hover .thumb img{transform:scale(1.08)}
+.thumb::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(15,26,48,.95))}
+.badge{position:absolute;top:.9rem;left:.9rem;z-index:2;font-family:ui-monospace,monospace;font-size:.66rem;padding:.28rem .7rem;border-radius:999px;background:rgba(2,6,23,.6);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.16)}
+.num{position:absolute;right:1rem;bottom:.6rem;z-index:2;font-family:ui-monospace,monospace;font-size:2rem;font-weight:700;color:rgba(255,255,255,.14);letter-spacing:-.04em}
+.body{display:flex;flex-direction:column;gap:.7rem;padding:1.2rem 1.5rem 1.5rem;flex:1}
+.body h2{font-size:1.2rem;letter-spacing:-.01em}
+.body p{color:var(--muted);font-size:.9rem;flex:1}
+.open{margin-top:.5rem;display:flex;align-items:center;justify-content:space-between;font-size:.86rem;font-weight:600;color:var(--text)}
+.arrow{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--border);background:rgba(148,163,184,.08);transition:all .35s var(--ease)}
+.card:hover .arrow{background:linear-gradient(135deg,var(--primary),var(--secondary));border-color:transparent;transform:rotate(-45deg)}
+
+.card.soon{justify-content:center;align-items:center;text-align:center;min-height:320px;gap:.5rem;padding:2rem;background:rgba(15,26,48,.35);border:1px dashed rgba(139,92,246,.4)}
+.card.soon::before{display:none}
+.card.soon b{font-size:2.4rem;animation:bob 2.4s ease-in-out infinite}
+.card.soon strong{font-size:1.05rem}
+.card.soon span{max-width:26ch;font-size:.85rem;color:var(--muted)}
+
+.foot{position:relative;z-index:1;max-width:1100px;margin:2rem auto 0;padding:1.6rem 1.5rem 2.5rem;border-top:1px solid var(--border);text-align:center;font-size:.82rem;color:var(--muted)}
+
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(1.4)}}
+@keyframes shine{to{background-position:220% center}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* Mode HP */
+@media (max-width:600px){
+  .topbar-inner{padding:.7rem 1.1rem}
+  .back{font-size:.82rem}
+  .wrap{padding:1.8rem 1.1rem 2rem}
+  .hero{margin-bottom:1.8rem}
+  h1{font-size:2rem;margin-bottom:.6rem}
+  .sub{font-size:.92rem}
+  .count{margin-top:.9rem;font-size:.74rem}
+  .grid{gap:1.1rem}
+  .card{border-radius:18px}
+  .thumb{border-radius:17px 17px 0 0;aspect-ratio:2.4/1}
+  .badge{top:.7rem;left:.7rem;font-size:.6rem;padding:.22rem .6rem}
+  .num{display:none}
+  .body{padding:1rem 1.1rem 1.15rem;gap:.55rem}
+  .body h2{font-size:1.05rem}
+  .body p{font-size:.84rem}
+  .open{font-size:.82rem}
+  .arrow{width:30px;height:30px}
+  .card.soon{min-height:200px;padding:1.4rem}
+  .card.soon b{font-size:1.9rem}
+  .foot{padding:1.2rem 1.1rem 2rem;margin-top:1rem}
+}
