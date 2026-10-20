@@ -13,11 +13,11 @@ body{
 }
 a{color:inherit;text-decoration:none}
 
-/* Efek latar: bintang berkelip */
+
 .stars{position:fixed;inset:0;z-index:0;pointer-events:none}
 .stars b{position:absolute;width:2px;height:2px;border-radius:50%;background:#fff;opacity:0;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--w)}
 
-/* Topbar */
+
 .topbar{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(2,6,23,.65);border-bottom:1px solid var(--border)}
 .topbar-inner{max-width:1100px;margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center}
 .back{font-size:.88rem;color:var(--muted);transition:color .25s,transform .25s var(--ease)}
@@ -73,7 +73,7 @@ h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;mar
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
-/* Mode HP */
+
 @media (max-width:600px){
   .topbar-inner{padding:.7rem 1.1rem}
   .back{font-size:.82rem}
@@ -97,7 +97,7 @@ h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;mar
   .foot{padding:1.2rem 1.1rem 2rem;margin-top:1rem}
 }
 
-/* Percantik: statistik, marquee, judul koleksi, bintang jatuh, chip live */
+
 .section-title{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
 .section-title h3{font-size:.8rem;font-family:ui-monospace,monospace;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
 .section-title i{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
@@ -109,7 +109,7 @@ h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;mar
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 @keyframes shoot{0%{opacity:0;transform:translate(0,0) rotate(145deg)}2%{opacity:1}9%{opacity:0;transform:translate(-460px,320px) rotate(145deg)}100%{opacity:0}}
 
-/* Mode HP: kartu kompak (thumbnail kecil di kiri) */
+
 @media (max-width:600px){
               .section-title{margin-bottom:1rem}
   .card:not(.soon){flex-direction:row;align-items:center;gap:.9rem;padding:.75rem;border-radius:16px}
@@ -125,7 +125,7 @@ h1{font-size:clamp(2.6rem,8vw,4.8rem);line-height:1.05;letter-spacing:-.03em;mar
   .card.soon span{max-width:none}
 }
 
-/* Desain ulang: konstelasi hero, kartu unggulan, banner slim */
+
 h1{background:linear-gradient(110deg,#fff 10%,#7dd3fc 45%,#22d3ee 70%,#fff 100%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero{position:relative;margin-bottom:2.4rem}
 .hero h1,.hero .sub{position:relative;z-index:1}
@@ -152,7 +152,7 @@ h1{background:linear-gradient(110deg,#fff 10%,#7dd3fc 45%,#22d3ee 70%,#fff 100%)
   .card.soon b{font-size:1.6rem}
 }
 
-/* Rapi: hero berupa banner konstelasi, kartu ukuran wajar */
+
 .wrap{padding-top:2.4rem}
 .hero{height:170px;margin-bottom:1.2rem}
 .constel{left:50%;right:auto;top:0;width:min(440px,92%);height:100%;transform:translateX(-50%);opacity:.95}
