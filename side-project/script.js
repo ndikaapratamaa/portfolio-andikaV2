@@ -1,4 +1,5 @@
 const PLACEHOLDER = 'img/placeholder.jpg';
+
 const PROJECTS = [
   {
     title: 'Surat Kecil Untukmu',
@@ -45,7 +46,7 @@ for(let i = 0; i < total; i++){
   stars.appendChild(b);
 }
 
-// Efek miring halus pada kartu (hanya di perangkat dengan mouse)
+
 if(window.matchMedia('(hover:hover)').matches){
   grid.querySelectorAll('.card:not(.soon)').forEach((card) => {
     card.addEventListener('pointermove', (e) => {
